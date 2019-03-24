@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/common/jquery.cookie.js"></script>
+    <script>
+        $(function () {
+            $("#show").text("欢迎用户"+$.cookie("userTel"));
+
+            $("#logout").click(function () {
+                let tel = $.cookie("userTel");
+                let token = $.cookie("userToken");
+                $.get("/user/logout?tel=" + tel + "&token=" + token, function (data) {
+                    data = JSON.parse(data);
+                    if (data.code === 1) {
+                        window.location.href = "/login"
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+<h3>首页</h3>
+<div id="show"></div>
+<a id="logout" href="javascript:;">退出</a>
+</body>
+</html>
