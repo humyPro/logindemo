@@ -9,7 +9,7 @@ function login() {
     let $password = $("#password");
     let tel = $account.val().trim();
     let password = $password.val().trim();
-    if (!assertVal(username, password)) {
+    if (!assertVal(tel, password)) {
         alert("帐号密码不能为空");
         $account.val("");
         $password.val("");
